@@ -1,0 +1,131 @@
+<!--Author Massimo Allegro: code sourced by Aaron Jack and then changed-->
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <meta charset="UTF-8">
+        <title> 
+            Textboard Project | Home 
+        </title> 
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <h1>Home Page</h1>
+        <header>
+            <div>
+                <ul>
+                    <li> <a href="index.html">Home</a> </li>
+                    <li> <a href="views/signup.ejs">Signup</a> </li>
+                    <li> <a href="views/login.ejs">Login</a> </li>
+                </ul>
+            </div>
+        </header>    
+    </body>
+
+    <body> 
+        <div class="top-bar">
+            <h1>
+                MMK Forums
+            </h1>
+        </div>
+        <div class="main-index">
+        <ol>
+        </ol>
+            <script src="js/data.js"> </script>
+            <script src="js/db.js"> </script>
+            <a href="views/welcome.ejs"> </a>
+
+            <script>
+                console.log(threads);
+                var container = document.querySelector('ol');
+                for (let thread of threads) {
+                    var html = `
+                    <li class="row">
+                        <a href="thread.html?${thread.id}">
+                            <h4 class="title">
+                                ${thread.title}
+                            </h4>
+                            <div class="bottom">
+                                <p class="timestamp">
+                                    ${new Date(thread.date).toLocaleString()}
+                                </p>
+                                <p class="thread-count">
+                                    ${thread.threads.length} threads
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                    `
+                    container.insertAdjacentHTML('beforeend', html);
+                }
+            </script>
+        </div>
+        <div class="main">
+            <div class="threads">
+                <textarea class="text"></textarea>
+                <button>  
+                    Add Thread
+                </button>
+            </div>
+        </div>
+
+        <script src="js/data.js"></script>
+        <script src="js/db.js"></script>
+        <script>
+            var id = window.location.search.slice(1);
+            var thread = threads.find(t => t.id == id);
+            var header = document.querySelector('.header');
+            var headerHtml = `
+                <h4 class="title">
+                    ${thread.title}
+                </h4>
+                <div class="bottom">
+                    <p class="timestamp">
+                        ${new Date(thread.date).toLocaleString()}
+                    </p>
+                    <p class="thread-count">
+                        ${thread.threads.length} threads
+                    </p>
+                </div>
+            `
+            header.insertAdjacentHTML('beforeend', headerHtml)
+            function addThread(thread) {
+                var threadHtml = `
+                    <div class="thread">
+                        <div class="top-thread">
+                            <p class="user">
+                                ${thread.author}
+                            </p>
+                            <p class="thread-ts">
+                                ${new Date(thread.date).toLocaleString()}
+                            </p>
+                        </div>
+                        <div class="thread-content">
+                            ${thread.content}
+                        </div>
+                    </div>
+                `
+                threads.insertAdjacentHTML('beforeend', threadHtml);
+            }
+
+            var threads = document.querySelector('.threads');
+            for (let thread of thread.threads) {
+                addThread(thread);
+            }
+
+            var btn = document.querySelector('button');
+            btn.addEventListener('click', function() {
+                var txt = document.querySelector('textarea');
+                var thread = {
+                    content: txt.value,
+                    date: Date.now(),
+                    author: 'Aaron'
+                }
+                addThread(thread);
+                txt.value = '';
+                thread.threads.push(thread);
+                localStorage.setItem('threads', JSON.stringify(threads));
+            })
+        </script>
+    </body>
+</html>
