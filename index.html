@@ -8,7 +8,7 @@
         </title> 
         <link rel="stylesheet" href="css/style.css">
     </head>
-
+    <!--Navagastion Bar-->
     <body>
         <h1>Home Page</h1>
         <header>
@@ -34,7 +34,7 @@
             <script src="js/data.js"> </script>
             <script src="js/db.js"> </script>
             <a href="views/welcome.ejs"> </a>
-
+            <!--Script order existing threads-->
             <script>
                 console.log(threads);
                 var container = document.querySelector('ol');
@@ -68,7 +68,7 @@
                 </button>
             </div>
         </div>
-
+        <!--Script to add threads-->
         <script src="js/data.js"></script>
         <script src="js/db.js"></script>
         <script>
@@ -119,7 +119,7 @@
                 var thread = {
                     content: txt.value,
                     date: Date.now(),
-                    author: 'Aaron'
+                    author: 'Massimo'
                 }
                 addThread(thread);
                 txt.value = '';
