@@ -14,7 +14,7 @@ var threads = [
             {
                 author: "Kevin",
                 date: Date.now(),
-                content: "Heyyyyy"
+                content: "Hey"
             }
         ]
 

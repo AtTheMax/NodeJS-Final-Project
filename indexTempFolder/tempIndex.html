@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <meta charset="UTF-8">
+        <title> 
+            Textboard Project | Home 
+        </title> 
+        <script src="db.js"></script>
+        <script src="views/welcome.ejs"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    
+    <body id="body">
+        <header id="navigation">
+            <div class="container">
+                <div class="navBar">
+                    <button type="button" class="buttonWorker">
+                        <span class="navSpacer"> </span>
+                        <span class="navSpacer"> </span>
+                        <span class="navSpacer"> </span>
+                    </button>
+                    <a class="navBar-Logo" href="#">
+                        <h1 id="logoLogo">
+                            Textboard Projcet
+                        </h1>
+                    </a>
+                </div>
+                <div class="navClasp" role="navigation">
+                    <ul id="unoList" class="unoListNavestBar">
+                        <li class="current"> <a href="#">Home</a> </li>
+                        <li> <a href="users/signup.html">Signup</a> </li>
+                        <li> <a href="views/login.html">Login</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </header>    
+    </body>
+
+    <body> 
+        <div class="top-bar">
+            <h1>
+                MMK Forum
+            </h1>
+        </div>
+        <div class="main-index" >
+        <ol>
+        </ol>
+        </div>
+        <script src="data.js"></script>
+        <script>
+            console.log(threads);
+            var container = document.querySelector('ol');
+            for (let thread of threads) {
+                var html = `
+                <li class="row">
+                    <a href="thread.html?${thread.id}">
+                        <h4 class="title">
+                            ${thread.title}
+                        </h4>
+                        <div class="bottom">
+                            <p class="timestamp">
+                                ${new Date(thread.date).toLocaleString()}
+                            </p>
+                            <p class="comment-count">
+                                ${thread.comments.length} comments
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                `
+                container.insertAdjacentHTML('beforeend', html);
+            }
+        </script>
+    </body>
+</html>
